@@ -24,6 +24,7 @@ def feed():
     try:
         producer.generate_data()
     except:
+        producer.counter = 0
         producer.flush()
         producer.close()
 

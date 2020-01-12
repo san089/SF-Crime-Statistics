@@ -9,6 +9,7 @@ class ProducerServer(KafkaProducer):
         super().__init__(**kwargs)
         self.input_file = input_file
         self.topic = topic
+        self.counter = 0
 
     #TODO we're generating a dummy data
     def generate_data(self):
@@ -18,7 +19,8 @@ class ProducerServer(KafkaProducer):
                 message = self.dict_to_binary(row)
                 # TODO send the correct data
                 future_record = self.send(topic = self.topic,value=message)
-                print(f"Future record type : {future_record}")
+                self.counter = self.counter + 1
+                print(f"Record number : {self.counter}. Record : {future_record.get()}")
                 time.sleep(1)
         
 
