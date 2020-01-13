@@ -1,4 +1,5 @@
 import producer_server
+import time
 
 
 def run_kafka_server():
@@ -30,4 +31,7 @@ def feed():
 
 
 if __name__ == "__main__":
+    start = time.time()
     feed()
+    end = time.time()
+    print(f"Program start time : {start}\nProgram end time : {end}\nExecution time : {round(end - start,2)}")

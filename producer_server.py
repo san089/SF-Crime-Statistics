@@ -21,7 +21,7 @@ class ProducerServer(KafkaProducer):
                 future_record = self.send(topic = self.topic,value=message)
                 self.counter = self.counter + 1
                 print(f"Record number : {self.counter}. Record : {future_record.get()}")
-                time.sleep(1)
+                time.sleep(0.2)
         
 
     # TODO fill this in to return the json dictionary to binary

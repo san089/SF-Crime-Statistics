@@ -34,8 +34,8 @@ def run_spark_job(spark):
         .option("kafka.bootstrap.servers","localhost:9092")\
         .option("subscribe","police.service.calls")\
         .option("startingOffsets","earliest")\
-        .option("maxRatePerPartition",100)\
-        .option("maxOffsetsPerTrigger",200)\
+        .option("maxRatePerPartition",1000)\
+        .option("maxOffsetsPerTrigger",2000)\
         .option("stopGracefullyOnShutdown", "true") \
         .load()
 
@@ -51,11 +51,11 @@ def run_spark_job(spark):
         .select("DF.*")    
     
     # TODO select original_crime_type_name and disposition
-    distinct_table = service_table.select("original_crime_type_name", "call_date_time","disposition").withWatermark("call_date_time", "10 seconds ")
+    distinct_table = service_table.select("original_crime_type_name", "call_date_time","disposition").withWatermark("call_date_time", "60 minutes")
     
     
     # count the number of original crime type
-    agg_df = distinct_table.groupBy("original_crime_type_name", psf.window("call_date_time", "10 seconds")).count()
+    agg_df = distinct_table.groupBy("original_crime_type_name", psf.window("call_date_time", "60 minutes")).count()
 
     agg_df.printSchema()
 
