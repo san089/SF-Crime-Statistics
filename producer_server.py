@@ -11,7 +11,7 @@ class ProducerServer(KafkaProducer):
         self.topic = topic
         self.counter = 0
 
-    #TODO we're generating a dummy data
+    #Read data from json file and feed to topic
     def generate_data(self):
         with open(self.input_file) as f:
             file_data = json.load(f)
@@ -24,7 +24,7 @@ class ProducerServer(KafkaProducer):
                 time.sleep(0.2)
         
 
-    # TODO fill this in to return the json dictionary to binary
+    # return the json dictionary to binary
     def dict_to_binary(self, json_dict):
         return json.dumps(json_dict).encode('utf8')
         

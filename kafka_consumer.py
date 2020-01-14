@@ -1,10 +1,12 @@
 from kafka import KafkaConsumer
 import time
 
-
+# Kafka consumer to test data moved to topic
 class ConsumerServer(KafkaConsumer):
     
     def __init__(self, topic_name):
+	
+		# Configure a Kafka Consumer
         self.consumer = KafkaConsumer(
                         bootstrap_servers = "localhost:9092", 
                         request_timeout_ms = 1000, 
@@ -17,6 +19,7 @@ class ConsumerServer(KafkaConsumer):
         try:
             while True:
                 
+				#Poll data for values
                 for metadata,consumer_record in self.consumer.poll().items():
                     if consumer_record:
                         for record in consumer_record:
