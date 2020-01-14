@@ -1,5 +1,5 @@
 
-# SF-Crime-Statistics
+# Kafka and Spark Streaming Integration
 
 ## **STEP 1**
 ### kafka consumer console output
