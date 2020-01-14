@@ -3,10 +3,10 @@ import time
 
 
 def run_kafka_server():
-	# TODO get the json file path
+	# Get the json file path
     input_file = "police-department-calls-for-service.json"
 
-    # TODO fill in blanks
+    # Create a Producer Server.
     producer = producer_server.ProducerServer(
         input_file=input_file,
         topic="police.service.calls",
@@ -19,7 +19,7 @@ def run_kafka_server():
     
     return producer
 
-
+# Feed data to topic
 def feed():
     producer = run_kafka_server()
     try:
@@ -30,6 +30,7 @@ def feed():
         producer.close()
 
 
+#Driver for Kafka Producer
 if __name__ == "__main__":
     start = time.time()
     feed()
