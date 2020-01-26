@@ -45,7 +45,8 @@ bin/kafka-server-start.sh config/server.properties
 
 
 ### Output
-
+![output
+	    ](https://github.com/san089/SF-Crime-Statistics/blob/master/output.png)
 
 #### Reference: [https://spark.apache.org/docs/latest/sql-performance-tuning.html](https://spark.apache.org/docs/latest/sql-performance-tuning.html)
 
